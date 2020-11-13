@@ -1,10 +1,6 @@
 <h1>新增看板</h1>
 
-<%= form_for(@board) do |f| %>
-    <%= label :title, '看板標題' %>
-    <%= f.text_field :title %> 
-    <%= f.submit %>
-<% end %>
+<%= render 'form', board: @board %>
 
 <%# <form action="/boards" method="post">
 <input type="text" name="authenticity_token">
