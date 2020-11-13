@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'boards#index'
+  root to: "boards#index"
   resources :boards
 
   # get '/', to: 'boards#index'
