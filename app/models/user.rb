@@ -8,6 +8,9 @@ class User < ApplicationRecord
     before_create :encrypt_password
     #只有在create的時候才有'before_create'這個階段
 
+    has_many :posts
+
+    
     def self.login(u)
     #密碼在註冊時有加密，所以在找user的時候，也要帶入加密過的密碼才找得到user
         pw = Digest::SHA1.hexdigest("a#{u[:password]}z")
