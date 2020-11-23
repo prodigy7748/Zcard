@@ -24,7 +24,6 @@ class BoardsController < ApplicationController
     end
 
     def destroy
-        find_board
         @board.destroy
         redirect_to root_path, notice: '看板刪除'
     end
