@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             redirect_to root_path, notice: '登入成功'
         else
             #資料庫撈不到資料,不render以免有心人士一直嘗試登入他人帳號
-            redirect_to session_path, notice: '登入失敗'
+            redirect_to sign_in_users_path, notice: '登入失敗'
         end
     end
 

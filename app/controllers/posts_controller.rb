@@ -5,7 +5,10 @@ class PostsController < ApplicationController
 
   def show
     @board = @post.board
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user)
   end
+  #第一次撈所有的comment，第二次根據第一次搜尋裡面分析有哪些user_id,使用sql語法的in，一次性撈這些user
 
   def new
     @post = Post.new

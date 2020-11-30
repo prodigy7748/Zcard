@@ -9,6 +9,7 @@ class User < ApplicationRecord
     #只有在create的時候才有'before_create'這個階段
 
     has_many :posts
+    has_many :comments
 
     
     def self.login(u)

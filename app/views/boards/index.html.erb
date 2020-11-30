@@ -10,4 +10,6 @@
             <%= link_to "刪除", board, method: 'delete', data: { confirm: '是否確定刪除?' } %>
         </li>
     <% end %>
+    <br>
+    <p>看板數量:<%= @boards.count %></p>
 </ul>
