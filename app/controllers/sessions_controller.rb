@@ -5,9 +5,8 @@ class SessionsController < ApplicationController
 
     def create
         #controller不放商業邏輯，login為拉出來放在model自製的類別方法
-        #欄位輸入的資料帶到model的login方法，找到這個user
-        user = User.login(params[:user])
-        if user
+        #欄位輸入的資料帶到model的login類別方法，找到這個user
+        if user = User.login(params[:user])
             #發號碼牌(cookie)給user，認這個email(改認ID，否則email不能讓使用者更改)
             #hash裡面包hash   "user"=>{"email"=>"888@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"登入"}
             session[:user1111] = user.id

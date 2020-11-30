@@ -5,9 +5,9 @@
 <ul>
     <% @boards.each do |board| %>
         <li>
-            <%= link_to "編輯", edit_board_path(board.id)%>
-            <%= link_to "刪除", board_path(board.id), method: 'delete', data: { confirm: '是否確定刪除?' } %>
             <%= link_to board.title, board_path(board.id) %>
+            <%= link_to "編輯", edit_board_path(board.id)%>
+            <%= link_to "刪除", board, method: 'delete', data: { confirm: '是否確定刪除?' } %>
         </li>
     <% end %>
 </ul>

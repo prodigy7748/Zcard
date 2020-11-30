@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            session[:user1111] = params[:user][:email]
+            session[:user1111] = params[:user][:id]
             redirect_to root_path, notice: '註冊成功！'
         else
         #如果new頁面不是放在registrations這個view下面，“sessions/new"

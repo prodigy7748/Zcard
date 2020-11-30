@@ -1,5 +1,5 @@
 class Board < ApplicationRecord
-    validates :title, presence: true, length: { minimum: 4 }
+    validates :title, presence: true
 
-    has_many :posts
+    has_many :posts, dependent: :destroy
 end

@@ -5,12 +5,12 @@ nav{
     display: flex;
     justify-content: space-between;
 }
+dl, ol, ul{
+    margin: 0;
+}
 
 nav ul{
     display: flex;
-
-    li{
-        padding: 10px;
-    }
+    align-items: center;
 }
 

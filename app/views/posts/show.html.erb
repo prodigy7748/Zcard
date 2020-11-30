@@ -8,4 +8,4 @@
   <%= simple_format(@post.content) %>
 </article>
 
-<%= link_to '回上頁', :back %>
+<%= link_to "回#{@board.title}", board_path(@board) %>
