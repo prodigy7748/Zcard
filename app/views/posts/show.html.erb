@@ -1,5 +1,17 @@
-<h2><%= @post.user.nickname %></h2>
-<h1><%= @post.title %></h1>
+<h3><%= @post.user.nickname %></h3>
+<h2><%= @post.title %></h2>
+<h2 data-controller="favorite" data-favorite-id="<%= @post.id %>">
+  <% if user_signed_in? %>
+  <%# stimulus%>
+    <%= link_to '#', data: { action: 'favorite#go' } do %>
+      <% if current_user.favorite?(@post) %>
+        <i class="fas fa-heart" data-target="favorite.icon"></i>
+      <% else %>
+        <i class="far fa-heart" data-target="favorite.icon"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</h2>
 
 <%# 將current user帶進model的類別方法去比對與這篇文章的user是否為同一個人 %>
 <%= link_to '編輯', edit_post_path(@post) if @post.owned_by?(current_user) %>
@@ -7,15 +19,19 @@
 <article>
   <%= simple_format(@post.content) %>
 </article>
+<p>文章字數: <%= @post.content.size %>字</p>
 
 <%= link_to "回#{@board.title}", board_path(@board) %>
 
+<%# ——————————post表單————————————%>
 <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
+<%# 使用remote: true可變成用AJAX傳輸資料%>
   <%= f.text_area :content, placeholder: '請輸入留言' %>
   <br>
   <%= f.submit '送出' %>
 <% end %>
 
+<%# ——————————comment列表————————————%>
 <ul>
 <% @comments.each do |comment| %>
   <li>

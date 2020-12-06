@@ -10,12 +10,18 @@ class User < ApplicationRecord
 
     has_many :posts
     has_many :comments
+    has_many :favorite_posts
+    has_many :my_favorites, through: :favorite_posts, source: 'post'
 
     
     def self.login(u)
     #密碼在註冊時有加密，所以在找user的時候，也要帶入加密過的密碼才找得到user
         pw = Digest::SHA1.hexdigest("a#{u[:password]}z")
         User.find_by(email: u[:email], password: pw)
+    end
+
+    def favorite?(post)
+        my_favorites.include?(post)
     end
 
     private

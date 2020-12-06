@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
   #第一次撈所有的comment，第二次根據第一次搜尋裡面分析有哪些user_id,使用sql語法的in，一次性撈這些user
-
+  
   def new
     @post = Post.new
   end
@@ -44,6 +44,20 @@ class PostsController < ApplicationController
       redirect_to @post, notice: '文章更新成功'
     else
       render :edit
+    end
+  end
+
+  def favorite
+    post = Post.find(params[:id])
+
+    if current_user.favorite?(post)
+      # 移除我的最愛
+      current_user.my_favorites.destroy(post)
+      render json: { status: 'removed' }
+    else
+      # 加到我最愛
+      current_user.my_favorites << post
+      render json: { status: 'added' }
     end
   end
 

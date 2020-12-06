@@ -3,6 +3,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("styles")
+require("scripts")
 
 // bin/webpack-dev-server 讓webpacker來打包js
 
@@ -12,3 +13,5 @@ require("styles")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import "controllers"

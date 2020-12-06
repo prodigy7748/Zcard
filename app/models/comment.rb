@@ -13,7 +13,7 @@ class Comment < ApplicationRecord
   # scope :cheap, -> { unscope(:where).where("price < 100")}  
 
   def destroy
-    comment.update(deleted_at: Time.now)
+    update(deleted_at: Time.now)
   end
 end
 

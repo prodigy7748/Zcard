@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   resources :posts, only:[] do
     resources :comments, shallow: true, only: [:create, :destroy]
+    #rails幫你猜到create路徑是包在posts內層，destroy則是在外層
+    member do
+      post :favorite  # POST /posts/:id/favorite
+    end
   end
 end
 
