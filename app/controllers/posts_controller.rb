@@ -6,7 +6,10 @@ class PostsController < ApplicationController
   def show
     @board = @post.board
     @comment = Comment.new
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).page(params[:page]).per(5)
+    # /posts/7?aa=2&cc=3
+    # params[:aa]
+    # params[:cc]
   end
   #第一次撈所有的comment，第二次根據第一次搜尋裡面分析有哪些user_id,使用sql語法的in，一次性撈這些user
   
@@ -71,6 +74,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 end

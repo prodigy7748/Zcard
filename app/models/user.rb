@@ -7,7 +7,7 @@ class User < ApplicationRecord
     
     before_create :encrypt_password
     #只有在create的時候才有'before_create'這個階段
-
+    has_many :boards
     has_many :posts
     has_many :comments
     has_many :favorite_posts

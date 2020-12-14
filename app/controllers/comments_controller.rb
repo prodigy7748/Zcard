@@ -13,11 +13,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = current_user.comments.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
     #挑出現在使用者的所有comment
-    comment.destroy
+    @comment.destroy
     #comment.update(deleted_at: Time.now)搬到model
-    redirect_to comment.post, notice: '留言刪除！'
+    redirect_to @comment.post, notice: '留言刪除！'
   end
 
   private

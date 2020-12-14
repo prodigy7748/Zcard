@@ -31,15 +31,15 @@
   <%= f.submit '送出' %>
 <% end %>
 
-<%# ——————————comment列表————————————%>
+<%# ——————————列表————————————%>
 <ul>
 <% @comments.each do |comment| %>
-  <li>
+  <li data-controller="uncomment" data-uncomment-id="<%= @comment.id %>">
     [<%= comment.user.nickname %>] <%# 會發生N+1問題，第一次撈所有comment,再來每個comment會再找它的user%>
     <%= comment.content %>
-    <%= link_to '刪除', comment, method: 'delete', data: {confirm: 'you sure?'} if comment.owned_by?(current_user) %>
+    <%= link_to '刪除', comment, remote: true, method: 'delete', data: {confirm: 'you sure?'} if comment.owned_by?(current_user) %>
   </li>
 <% end %>
 </ul>
-
+<%= paginate @comments %>
 
