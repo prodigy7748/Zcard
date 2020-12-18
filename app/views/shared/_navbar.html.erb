@@ -2,8 +2,14 @@
     <ul>
         <li><%= link_to '首頁', root_path, class:"nav-link" %></li>
         <li><%= link_to '看板列表', boards_path, class:"nav-link" %></li>
+        <li><%= link_to '購買點數卡', pricing_path %></li>
     </ul>
     <ul>
+        <li><%= link_to cart_path do%>
+          <i class="fas fa-cart-plus">(<%=current_cart.items.count%> / <%= current_cart.total_price %>)</i>
+          <%end%>
+        </li>
+
         <% if current_user %>
             <li><%= current_user.nickname %></li>
             <li><%= link_to '登出', sign_out_users_path, method: 'delete',class:"nav-link" %></li>

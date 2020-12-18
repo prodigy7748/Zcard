@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     def destroy
         #丟掉user的號碼牌，斷開連結
         session[:user1111] = nil
+        session[:cart1111] = nil
         redirect_to root_path, notice: "登出成功"
     end
 

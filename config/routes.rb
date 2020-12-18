@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   root 'boards#index'
+  get 'pricing', to: 'pages#pricing'
+  resource :cart, only: [:show, :destroy] do
+    post 'add_item/:id', action: 'add_item', as: 'add_item'
+    get :checkout
+  end
+
+  resources :orders, only: [:index, :show, :create, :destroy]
 
   resource :users, controller: 'registrations', only: [:create, :edit, :update] do
     get '/sign_up', action: 'new'

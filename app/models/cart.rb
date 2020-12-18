@@ -1,6 +1,6 @@
 class Cart
-  def initialize
-    @items = []
+  def initialize(items = [])
+    @items = items
   end
 
   def add_item(item_id, quantity = 1)
@@ -33,11 +33,20 @@ class Cart
   end
 
   def serialize
-    items = [
-      {"item_id" => 1, "quantity" => 3},
-      {"item_id" => 2, "quantity" => 2}
-      ]
+    items = @items.map {|item| {"item_id" => item.item_id, "quantity" => item.quantity}}
     { 'items' => items }
+  end
+
+  def self.from_hash(hash)
+    if hash && hash['items']
+      
+      items = hash['items'].map {|item| CartItem.new(item['item_id'], item['quantity'])}
+
+      Cart.new(items)
+
+    else
+      Cart.new
+    end
   end
 
 end

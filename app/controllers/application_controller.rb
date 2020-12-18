@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     include Pundit
     include SessionsHelper 
+    include CartsHelper 
     #viewhelper只有view能取用，所以controller要用的話，要取用
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 

@@ -31,6 +31,9 @@ gem 'aasm'
 gem 'kaminari'
 gem 'friendly_id', '~> 5.4.0'
 gem "pundit"
+gem "braintree", "~> 3.1.0"
+gem 'figaro', '~> 1.0'
+
 
 
 
